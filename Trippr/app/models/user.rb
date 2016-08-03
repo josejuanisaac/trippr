@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  validates :email, :username, :password, presence: true
   has_many :guest_events
   has_many :guested_events, through: :guest_events, source: :event
   has_many :created_events, class_name: "Event", foreign_key: "creator_id"

@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+  validates :title, :description, :creator_id, presence: true
   belongs_to :creator, class_name: 'User'
   has_many :guest_events
   has_many :guests, through: :guest_events, source: :user
