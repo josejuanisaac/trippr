@@ -5,6 +5,8 @@ back end and React on the front end.
 ---
 By Wei Wen, Robin Choi, Jose Taveras
 
+To run tests, run `bundle exec test`.
+
 
 Must do items before you push your changes:
 
