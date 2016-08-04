@@ -52,8 +52,6 @@ RSpec.describe EventsController, type: :controller do
   end
 
   describe "POST events#create" do
-    # Add request test to check redirect
-
     it "creates a new event successfully" do
       expect {
         post :create, event: {title: "test title", description: "test description", creator_id: 1}
@@ -67,8 +65,6 @@ RSpec.describe EventsController, type: :controller do
       delete :destroy, id: event.id
       expect(response).to have_http_status(302)
     end
-
-    # Add request test to check redirect
 
     it "has @event deleted" do
       delete :destroy, id: event.id
@@ -102,8 +98,6 @@ RSpec.describe EventsController, type: :controller do
       put :update, id: event.id, event: {title: "test title"}
       expect(response).to have_http_status(302)
     end
-
-    # Add request test to check redirect
 
     it "has @event updated" do
       put :update, id: event.id, event: {title: "updated"}
