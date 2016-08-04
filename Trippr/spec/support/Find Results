@@ -1,8 +1,0 @@
-Searching 68 files for "classActiveRecord"
-
-/Users/weiwen/Desktop/trippr/Trippr/spec/support/shared_db_connection.rb:
-    1: ClassActiveRecord::Base
-    2    mattr_accessor :shared_connection
-    3    @@shared_connection = nil
-
-1 match in 1 file
