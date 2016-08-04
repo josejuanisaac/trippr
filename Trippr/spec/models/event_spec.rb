@@ -3,22 +3,22 @@ require "rails_helper"
 RSpec.describe Event, :type => :model do
   context 'Test event validation' do
     it "Empty title is not valid" do
-      example = Event.new(description: "description", creator_id: 1)
+      example = build(:event, description: "description", creator_id: 1)
       expect(example).to_not be_valid
     end
 
     it "Empty description is not valid" do
-      example = Event.new(title: "title",creator_id: 1)
+      example = build(:event, title: "title",creator_id: 1)
       expect(example).to_not be_valid
     end
 
     it "Empty create_id is not valid" do
-      example = Event.new(title: "title", description: "description")
+      example = build(:event, title: "title", description: "description")
       expect(example).to_not be_valid
     end
 
-    it "Empty create_id is valid" do
-      example = Event.new(title: "title", description: "description", creator_id: 1)
+    it "Non-empty title, description, create_id is valid" do
+      example = create(:event, title: "title", description: "description", creator_id: 1)
       expect(example).to be_valid
     end
   end
