@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
+  let(:event) {create(:event)}
+  let(:users) {[create(:user), create(:user)]}
+  let(:guestevents) {[GuestEvent.create(user_id: users[0].id, event_id: event.id), GuestEvent.create(user_id: users[1].id, event_id: event.id)]}
+
   describe "GET events#index" do
     it "responds successfully with an HTTP 200 status code" do
       get :index
@@ -33,8 +37,6 @@ RSpec.describe EventsController, type: :controller do
   end
 
   describe "GET events#show" do
-    let(:event) {create(:event)}
-
     it "responds successfully with an HTTP 200 status code" do
       get :show, id: event.id
       expect(response).to have_http_status(200)
@@ -60,7 +62,6 @@ RSpec.describe EventsController, type: :controller do
   end
 
   describe "DELETE events#destroy" do
-    let(:event) {create(:event)}
     it "responds successfully with an HTTP 200 status code" do
       delete :destroy, id: event.id
       expect(response).to have_http_status(302)
@@ -73,8 +74,6 @@ RSpec.describe EventsController, type: :controller do
   end
 
   describe "GET events#edit" do
-    let(:event) {create(:event)}
-
     it "responds successfully with an HTTP 200 status code" do
       get :edit, id: event.id
       expect(response).to have_http_status(200)
@@ -92,8 +91,6 @@ RSpec.describe EventsController, type: :controller do
   end
 
   describe "PUT events#update" do
-    let(:event) {create(:event)}
-
     it "responds successfully with an HTTP 200 status code" do
       put :update, id: event.id, event: {title: "test title"}
       expect(response).to have_http_status(302)
@@ -104,4 +101,31 @@ RSpec.describe EventsController, type: :controller do
       expect(assigns(:event).title).to eq('updated')
     end
   end
+
+  describe "PUT events#add_guest" do
+    it "responds successfully with an HTTP 200 status code" do
+      put :add_guests, event_id: event.id, guests: [users[0].id, users[1].id]
+      expect(response).to have_http_status(302)
+    end
+
+    it "Add a guest to @event" do
+      put :add_guests, event_id: event.id, guests: [users[0].id, users[1].id]
+      expect(assigns(:event).guests).to match_array(users)
+    end
+  end
+
+  describe "PUT events#delete_guest" do
+    it "responds successfully with an HTTP 302 status code" do
+      guestevents
+      put :delete_guests, event_id: event.id, guests: [users[0].id, users[1].id]
+      expect(response).to have_http_status(302)
+    end
+
+    it "delete guest from @event" do
+      guestevents
+      put :delete_guests, event_id: event.id, guests: [users[0].id, users[1].id]
+      expect(assigns(:event).guests.length).to eq(0)
+    end
+  end
+
 end

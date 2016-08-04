@@ -35,6 +35,19 @@ class EventsController < ApplicationController
     redirect_to events_path
   end
 
+  def add_guests
+    p params[:guests]
+    @event = Event.find(params[:event_id])
+    @event.add_guests(params[:guests])
+    redirect_to event_path(@event)
+  end
+
+  def delete_guests
+    @event = Event.find(params[:event_id])
+    @event.delete_guests(params[:guests])
+    redirect_to event_path(@event)
+  end
+
   private
   def event_params
     params.require(:event).permit(:title, :description, :creator_id)
