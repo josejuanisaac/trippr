@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+  validates :body, :creator_id, :event_id, presence: true
   has_many :comments
   has_many :commenters, through: :comments, source: :user
   belongs_to :event

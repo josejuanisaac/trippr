@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     put 'add_guests'
     delete 'delete_guests'
   end
+
+  resources :post, :comment
   # these routes are for showing users a login form, logging them in, and logging them out.
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

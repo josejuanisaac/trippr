@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20160728174102) do
     t.integer  "post_id"
     t.integer  "user_id"
     t.string   "content"
-    t.integer  "thumbs"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "thumbs",     default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "events", force: :cascade do |t|

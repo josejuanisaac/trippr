@@ -18,7 +18,7 @@ RSpec.describe Event, :type => :model do
     end
 
     it "Non-empty title, description, create_id is valid" do
-      example = create(:event, title: "title", description: "description", creator_id: 1)
+      example = create(:event)
       expect(example).to be_valid
     end
   end
@@ -57,9 +57,6 @@ RSpec.describe Event, :type => :model do
     it "adds guests to an event" do
       expect{
         event.add_guests([users[0].id, users[1].id])
-        p event.guest_events[0].user
-        p users[0].guested_events
-        p event.guests
       }.to change{event.guests.length}.by(2)
     end
 
