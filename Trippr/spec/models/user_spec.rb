@@ -3,28 +3,28 @@ require "rails_helper"
 RSpec.describe User, :type => :model do
   context "Test user validations" do
     it "Empty email is not valid" do
-      example = User.new(username: "username", password: "password")
+      example = User.new(username: "username", password: "password", password_confirmation: "password")
         expect(example).to_not be_valid
     end
 
     it "Empty username is not valid" do
-      example = User.new(email: "email", password: "password")
+      example = User.new(email: "email", password: "password", password_confirmation: "password")
         expect(example).to_not be_valid
     end
 
-    it "Empty password is not valid" do
-      example = User.new(email: "example", username: "username")
+    it "Empty password_digest is not valid" do
+      example = User.new(email: "example", username: "username", password_confirmation: "password")
         expect(example).to_not be_valid
     end
 
-    it "Non-empty email, username and password is valid" do
-      example = User.new(email: "example", username: "username", password: "password")
+    it "Non-empty email, username, password, and password_confirmation is valid" do
+      example = create(:user)
         expect(example).to be_valid
     end
   end
 
   context "Test user associations" do
-    let(:user) {User.create(email: "example", username: "username", password: "password")}
+    let(:user) {create(:user)}
     let(:events) {[Event.create(title: "title", description: "description", creator_id: user.id), Event.create(title: "title1", description: "description1", creator_id: user.id)]}
     let(:posts) {[Post.create(creator_id: user.id, event_id: events[0].id, body: "long long time ago"), Post.create(creator_id: user.id, event_id: events[0].id, body: "long long time ago")]}
     let(:comments) {[Comment.create(post_id: posts[0].id, user_id: user.id, content: "This is good.", thumbs: 0), Comment.create(post_id: posts[1].id, user_id: user.id, content: "This is good.", thumbs: 0)]}

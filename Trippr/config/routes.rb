@@ -4,7 +4,16 @@ Rails.application.routes.draw do
     put 'add_guests'
     delete 'delete_guests'
   end
+  # these routes are for showing users a login form, logging them in, and logging them out.
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
 
+  # these routes are for creating new users.
+  resources :users, except: [:index, :new]
+
+  get '/signup' => 'users#new'
+  # post '/users' => 'users#create'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
