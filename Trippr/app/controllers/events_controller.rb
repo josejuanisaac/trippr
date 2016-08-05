@@ -36,7 +36,6 @@ class EventsController < ApplicationController
   end
 
   def add_guests
-    p params[:guests]
     @event = Event.find(params[:event_id])
     @event.add_guests(params[:guests])
     redirect_to event_path(@event)
