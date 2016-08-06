@@ -56,6 +56,8 @@ RSpec.describe Event, :type => :model do
     let(:users) {[create(:user), create(:user)]}
     it "adds guests to an event" do
       expect{
+        event
+        users
         event.add_guests([users[0].id, users[1].id])
       }.to change{event.guests.length}.by(2)
     end

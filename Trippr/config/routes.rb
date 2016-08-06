@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+  root 'welcome#index'
 
   resources :events do
     put 'add_guests'
     delete 'delete_guests'
+    resources :posts, except: [:index, :new, :edit] do
+      resources :comments, except: [:index, :new, :edit]
+    end
   end
 
-  resources :post, :comment
   # these routes are for showing users a login form, logging them in, and logging them out.
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
@@ -21,7 +24,6 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
