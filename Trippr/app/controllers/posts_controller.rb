@@ -1,0 +1,37 @@
+class PostsController < ApplicationController
+  respond_to :html, :json
+
+  # def index
+  #   @posts = Post.all
+  # end
+
+  def show
+    @post = Post.find(params[:id])
+    render json: @post
+  end
+
+  def create
+    @post = Post.new(post_params)
+    if @post.save
+      render json: @post
+    else
+      render json: @post.errors.full_messages
+    end
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    @post.update(post_params)
+    render json: @post
+  end
+
+  def destroy
+    Post.find(params[:id]).destroy
+    render json: {message: "The post is deleted successfully.", status: 200}
+  end
+
+  private
+  def post_params
+    params.require(:post).permit(:body, :event_id, :creator_id)
+  end
+end
