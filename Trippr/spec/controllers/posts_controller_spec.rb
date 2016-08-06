@@ -38,6 +38,7 @@ RSpec.describe PostsController, type: :controller do
       expect(return_post["body"]).to eq post_example.body
       expect(return_post["creator_id"]).to eq post_example.creator_id
       expect(return_post["event_id"]).to eq post_example.event_id
+      expect(return_post["avatar"]).to eq post_example.avatar
     end
   end
 
