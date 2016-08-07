@@ -1,8 +1,17 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  #let Paperclip know to look there by adding that directory to its path
+  # let Paperclip know to look there by adding that directory to its path
   Paperclip.options[:command_path] = "/usr/local/bin/"
+
+  #
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_region => ENV['AWS_REGION'],
+    :s3_host_name => 's3.amazonaws.com',
+    :bucket => ENV['AWS_BUCKET'],
+    s3_credentials: {access_key_id: ENV['AWS_ACCESS_KEY_ID'], secret_access_key: ENV['AWS_SECRET_KEY_ID']}
+  }
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

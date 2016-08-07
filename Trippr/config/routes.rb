@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :events do
     put 'add_guests'
     delete 'delete_guests'
-    resources :posts, except: [:index, :new, :edit] do
+    resources :posts, except: [:index, :edit] do
       resources :comments, except: [:index, :new, :edit]
     end
   end
