@@ -26,3 +26,9 @@ Trello Board:
 3. Write tests
 4. Move to "Finished"
 5. Repeat steps
+
+How to connect to S3
+
+1. Run `export AWS_REGION=[your s3 bucket region]` in your terminal to set the enviorment variable
+2. Do the same set `AWS_BUCKET`, `AWS_ACCESS_KEY_ID`, and `AWS_SECRET_KEY_ID`
+3. Restart the server and Paperclip is connected to AWS now
