@@ -1,0 +1,1 @@
+@PostForm = React.createClass
