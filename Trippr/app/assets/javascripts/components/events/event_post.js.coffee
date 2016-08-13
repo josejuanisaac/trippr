@@ -15,10 +15,10 @@
       React.DOM.div
         className: "row"
         React.DOM.div
-          className: "col-md-10 col-md-offset-1 text-danger text-left"
+          className: "col-md-12 text-danger text-left"
           React.DOM.h3 null, 'Posts'
           React.DOM.p null,
-            for post in @state.posts
+            for posts in @state.posts
               React.createElement EventPost, key: event.id, event: event
 
 
