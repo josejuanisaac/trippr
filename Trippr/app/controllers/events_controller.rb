@@ -9,6 +9,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @eventPost = Post.where(event_id: params[:id])
+    # p @eventPost
   end
 
   def create

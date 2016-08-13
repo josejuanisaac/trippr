@@ -1,12 +1,8 @@
 @Event = React.createClass
     getInitialState: ->
-      event: @props.events
-    getdefaultProps: ->
+      event: @props.event
+    getDefaultProps: ->
       event: []
-    addPost: (event) ->
-      events = @state.events.slice()
-      events.push event
-      @setState events: events
     handleView: (e) ->
       e.preventDefault()
       $.ajax
@@ -24,17 +20,3 @@
             className: "btn btn-info"
             onClick: @handleView
             'View'
-           React.DOM.div
-            className: "container"
-            React.DOM.div
-              className: "row"
-              React.DOM.div
-                className: "col-md-12 text-primary text-left"
-                React.DOM.h1 null, @props.event.title
-                React.DOM.p null, @props.event.description
-            React.DOM.div
-              className: "row"
-              React.DOM.div
-                className: "col-md-12 text-danger text-left"
-                React.DOM.h3 null, 'Posts'
-                React.DOM.p null, ''
