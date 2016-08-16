@@ -1,10 +1,12 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    @user = current_user
+    @created_events = @user.created_events
+    @guested_events = @user.guested_events
   end
 
   def new
-    @event = Event.new
+    @event = Event.new(creator_id: current_user.id)
   end
 
   def show
@@ -14,9 +16,11 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
-      redirect_to event_path(@event)
+      puts "successful"
+      render json: @event
     else
-      redirect_to new_event_path
+      puts "fail"
+      render json: @record.errors.full_messages, status: :unprocessable_entity
     end
   end
 
