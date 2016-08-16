@@ -1,12 +1,1 @@
-<%= react_component 'EventPost', {event: @event, posts: @eventPost, creator_id: current_user.id} %>
-<!--
-<%= @event.posts%>
-<%= @eventPost%>
- -->
- <!--
-<% for post in @eventPost%>
-  <p>
-    <%=post.body%>
-  </p>
-<% end %>
--->
+<%= react_component 'Posts', {event: @event, posts: @posts, creator_id: current_user.id} %>
