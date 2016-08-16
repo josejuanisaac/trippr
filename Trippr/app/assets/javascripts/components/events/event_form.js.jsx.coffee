@@ -26,5 +26,5 @@
         <div className='form-group'>
           <input type='hidden' className='form-control' name='creator_id' value={this.state.creator_id} onChange={this.handleChange}></input>
         </div>
-        <button className='btn btn-primary' disabled={!this.valid()}>Create record</button>
+        <button className='btn btn-primary' disabled={!this.valid()}>Create event</button>
       </form>`
