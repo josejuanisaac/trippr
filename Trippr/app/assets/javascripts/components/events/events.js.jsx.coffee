@@ -1,16 +1,37 @@
 @Events = React.createClass
     getInitialState: ->
-      events: @props.events
+      created_events: @props.created_events
+      guested_events: @props.guested_events
     getDefaultProps: ->
-      events: []
+      created_events: []
+      guested_events: []
     addEvent: (event) ->
-      events = @state.events.slice()
-      events.push event
-      @setState events: events
+      created_events = @state.created_events.slice()
+      created_events.push event
+      @setState created_events: created_events
     render: ->
-      `<div className='events'>
-        <h1 className= 'title'>Events</h1>
-        <EventForm handleNewEvent={this.addEvent} creator_id={this.props.creator_id}/>
+      `<div>
+        <div className='created_events'>
+          <h1 className= 'title'>created_events</h1>
+          <EventForm handleNewEvent={this.addEvent} creator_id={this.props.creator_id}/>
+          <hr/>
+          <table className='table table-bordered'>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.created_events.map(function(event) {
+                return <Event key={event.id} event={event}/>
+              })}
+            </tbody>
+          </table>
+        </div>
+        <hr/>
+        <div className='guested_events'>
+        <h1 className= 'title'>guested_events</h1>
         <hr/>
         <table className='table table-bordered'>
           <thead>
@@ -20,9 +41,10 @@
             </tr>
           </thead>
           <tbody>
-            {this.state.events.map(function(event) {
-              return <Event event={event}/>
+            {this.state.guested_events.map(function(event) {
+              return <Event key={event.id} event={event}/>
             })}
           </tbody>
         </table>
+      </div>
       </div>`
