@@ -21,7 +21,7 @@
           </thead>
           <tbody>
             {this.state.events.map(function(event) {
-              return <Event key={event.id} event={event}/>
+              return <Event event={event}/>
             })}
           </tbody>
         </table>
