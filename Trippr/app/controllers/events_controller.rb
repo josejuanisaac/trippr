@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.where(creator_id: current_user.id)
+    @user = current_user
+    @created_events = @user.created_events
+    @guested_events = @user.guested_events
   end
 
   def new
