@@ -29,7 +29,7 @@
       @setState "#{ name }": value
       notice = @validate(name, value)
       if notice
-        $('#warning').text('*' + notice)
+        $('#warning').text('* ' + notice)
       else
         $('#warning').empty()
     valid: ->
@@ -62,5 +62,5 @@
           <input name='authenticity_token' value={this.props.form_authenticity_token} type="hidden"></input>
           <button className='btn btn-primary' disabled={!this.valid()}>Submit</button>
         </form>
-        <h6 id='warning'></h6>
+        <div id='warning' class="help-block"></div>
       </div>`

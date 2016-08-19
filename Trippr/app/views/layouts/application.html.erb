@@ -8,13 +8,11 @@
 </head>
 <body>
 
-<% if current_user %>
-  Signed in as <%= current_user.username %> | <%= link_to "Logout", '/logout' %>
-<% else %>
-  <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
-<% end %>
+  <%= react_component 'Navbar', {current_user: current_user, form_authenticity_token: form_authenticity_token} %>
 
-<%= yield %>
+  <div class="container">
+    <%= yield %>
+  </div>
 
 </body>
 </html>
