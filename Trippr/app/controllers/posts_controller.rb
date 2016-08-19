@@ -16,6 +16,10 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    p @post.id
+    @currentEvent = Event.find(params[:id])
+    p @currentEvent.id
+    @post.event_id = @currentEvent
     if @post.save
       render json: @post
     else

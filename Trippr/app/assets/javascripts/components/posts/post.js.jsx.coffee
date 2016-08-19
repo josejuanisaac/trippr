@@ -1,5 +1,5 @@
 @Post = React.createClass
   render: ->
-    '<tr>
-      <td>{this.props.post.body}</td>
-    </tr>'
+    `<p>
+      {this.props.post.body}
+    </p>`
