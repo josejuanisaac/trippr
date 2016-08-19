@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
   def new
-    @auth_token_form = form_authenticity_token
     @user = User.new
   end
 
