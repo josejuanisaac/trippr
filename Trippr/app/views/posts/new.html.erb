@@ -1,13 +1,1 @@
-
-
-
-
-
-
-<%= form_for @post, url: event_posts_path, html: { multipart: true } do |form| %>
-  <%= form.text_field :body %>
-  <%= form.hidden_field :creator_id, value: current_user.id %>
-  <%= form.hidden_field :event_id, value: params[:event_id] %>
-  <%= form.file_field :avatar %>
-  <%= form.submit %>
-<% end %>
+<%= react_component 'PostForm', {newPost: @post } %>
