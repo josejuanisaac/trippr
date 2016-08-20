@@ -15,9 +15,33 @@
       navbarStyle = {
         backgroundColor:'#e3f2fd'
       }
-      `<nav className="navbar navbar-light" style={navbarStyle}>
-        <div className="container">
-          <a className="navbar-brand" href="/">Trippr</a>
-          <div id="navbar-signiture">{ this.renderNavSigniture() }</div>
+      `<nav id="mainNav" className="navbar navbar-default navbar-fixed-top">
+        <div className="container-fluid">
+            <div className="navbar-header">
+                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span className="sr-only">Toggle navigation</span>
+                    <span className="icon-bar"></span>
+                    <span className="icon-bar"></span>
+                    <span className="icon-bar"></span>
+                </button>
+                <a className="navbar-brand page-scroll" href="#page-top">Trippr Logo</a>
+            </div>
+
+            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul className="nav navbar-nav navbar-right">
+                    <li>
+                        <a className="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+                        <a className="page-scroll" href="#services">Services</a>
+                    </li>
+                    <li>
+                        <a className="page-scroll" href="#portfolio">Examples</a>
+                    </li>
+                    <li>
+                        <a className="page-scroll" href="#">Login</a>
+                    </li>
+                </ul>
+            </div>
         </div>
       </nav>`

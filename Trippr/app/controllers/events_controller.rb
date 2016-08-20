@@ -1,8 +1,12 @@
 class EventsController < ApplicationController
   def index
     @user = current_user
-    @created_events = @user.created_events
-    @guested_events = @user.guested_events
+    if @user
+      @created_events = @user.created_events
+      @guested_events = @user.guested_events
+    else
+      redirect_to '/'
+    end
   end
 
   def new

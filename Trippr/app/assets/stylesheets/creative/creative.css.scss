@@ -178,7 +178,8 @@ header {
     min-height: auto;
     text-align: center;
     color: #fff;
-    background-image: asset-data-url("creative/header.jpg");
+    background-image: asset-data-url("creative/cover.jpg");
+    opacity: 0.6;
     background-position: center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
