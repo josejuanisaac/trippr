@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
+  root 'creatives#index'
 
   resources :events do
     put 'add_guests'
