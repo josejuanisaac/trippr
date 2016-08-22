@@ -16,13 +16,11 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    p @post.id
-    @currentEvent = Event.find(params[:id])
-    p @currentEvent.id
-    @post.event_id = @currentEvent
     if @post.save
+      p "successfully posted"
       render json: @post
     else
+      p "error posting"
       render json: @post.errors.full_messages
     end
   end

@@ -2,6 +2,7 @@
   getInitialState: ->
     body: ""
     creator_id: @props.creator_id
+    event_id: @props.event_id
   handleChange: (e) ->
     name = e.target.name
     @setState "#{name}": e.target.value
@@ -23,7 +24,7 @@
         <input type="hidden" name="creator_id" value={this.state.creator_id} className='form-control'></input>
       </div>
       <div className="form-group">
-        <input type="hidden" name="event_id" value={this.state.event_id} className='form-control'></input>
+        <input type="hidden" name="event_id" value={this.props.event_id} className='form-control'></input>
       </div>
       <button className='btn btn-info' disabled={!this.valid()}>Post</button>
     </form>

@@ -24,7 +24,7 @@
                 return <Post key={post.id} post={post}/>
                 })}
           </div>
-          <PostForm handleNewPost={this.addPost} creator_id={this.props.creator_id}/>
+          <PostForm handleNewPost={this.addPost} creator_id={this.props.creator_id} event_id={this.props.event.id}/>
         </div>
 
       </div>
