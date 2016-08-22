@@ -14,7 +14,7 @@
     error = null
     if name == "email"
       error = @validateEmail(value)
-    errorDiv = $("#error-message-email")
+    errorDiv = $(e.target.nextSibling)
     if error
       errorDiv.text error
     else
@@ -32,57 +32,45 @@
       success: @ajaxSuccess
       error: @ajaxFail
   ajaxSuccess: (data) ->
-    console.log 'success'
-    console.log data
     @props.handleLogin data
     @setState @getInitialState()
   ajaxFail: (error) ->
-    console.log 'fail'
     errorDiv = $("#error-message-login")
     errorDiv.text ->
       "* " + error.responseText
     # errorDiv.css
     #   color: "red"
   render: ->
-    `<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul className="nav navbar-nav navbar-right">
-        <li className="dropdown">
-          <a className="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span className="caret"></span></a>
-          <ul id="login-dp" className="dropdown-menu">
-            <li>
-               <div className="row">
-                  <div className="col-md-12">
-                     <form className="form" role="form" method="post" action="login" acceptCharset="UTF-8" id="login-nav" onSubmit={this.handleSubmit}>
-                        <div className="form-group">
-                           <label className="sr-only" htmlFor="exampleInputEmail2">Email address</label>
-                           <input type="test" className="form-control" id="exampleInputEmail2" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required/>
-                        </div>
-                        <div className="help-block text-left" id="error-message-email"></div>
-                        <div className="form-group">
-                           <label className="sr-only" htmlFor="exampleInputPassword2">Password</label>
-                           <input type="password" className="form-control" id="exampleInputPassword2" placeholder="Password" name="password" value={this.state.password} onChange={this.handleChange} required/>
-                                                 <div className="help-block text-right"><a href="">Forget the password ?</a></div>
-                        </div>
-                        <div className="help-block text-left" id="error-message-login"></div>
-                        <div className="form-group">
-                          <input name='authenticity_token' value={this.props.form_authenticity_token} type="hidden"/>
-                        </div>
-                        <div className="form-group">
-                           <button type="submit" className="btn btn-primary btn-block" disabled={!this.valid()}>Sign in</button>
-                        </div>
-                        <div className="checkbox">
-                           <label>
-                            <input type="checkbox"/> keep me logged-in
-                           </label>
-                        </div>
-                     </form>
-                  </div>
-                  <div className="bottom text-center">
-                    New here ? <a href="/signup"><b>Join Us</b></a>
-                  </div>
-               </div>
-            </li>
-          </ul>
-        </li>
-      </ul>
+    `<div className="tab-pane fade active in" id="signin" onSubmit={this.handleSubmit}>
+      <form className="form-horizontal">
+      <fieldset>
+
+      <div className="control-group">
+        <label className="control-label" htmlFor="email">Alias:</label>
+        <div className="controls">
+          <input id="email" name="email" type="text" className="form-control input-medium" placeholder="JoeSixpack" value={this.state.email} onChange={this.handleChange} required/>
+          <em></em>
+        </div>
+      </div>
+
+
+      <div className="control-group">
+        <label className="control-label" htmlFor="password">Password:</label>
+        <div className="controls">
+          <input id="password" name="password" className="form-control input-medium" type="password" value={this.state.password} onChange={this.handleChange} placeholder="********" required/>
+        </div>
+      </div>
+
+      <div className="control-group">
+        <input name='authenticity_token' value={this.props.form_authenticity_token} type="hidden"></input>
+      </div>
+
+      <div className="control-group">
+        <label className="control-label" htmlFor="signin"></label>
+        <div className="controls">
+          <button id="signin" name="signin" className="btn btn-primary" disabled={!this.valid()}>Sign In</button>
+        </div>
+      </div>
+      </fieldset>
+      </form>
     </div>`

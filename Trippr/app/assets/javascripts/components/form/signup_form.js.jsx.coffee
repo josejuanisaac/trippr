@@ -7,7 +7,7 @@
     validate: (name, value) ->
       switch (name)
         when 'username' then (if !(value.match(/([a-zA-Z]|\d){8,12}/))
-                                "Username has to have length of between 8 - 12 characters or numbers"
+                                "8 - 12 characters or numbers"
                               else
                                 null)
         when 'email' then (if !(value.match(/([a-zA-z]|\d)+@([a-zA-z]|\d)+\.([a-zA-z]|\d)+/))
@@ -15,7 +15,7 @@
                               else
                                 null)
         when 'password' then (if !(value.match(/([a-zA-Z]|\d){8,16}/))
-                                "Password has to have length of between 8 - 16 characters or numbers"
+                                "8 - 16 characters or numbers"
                               else
                                 null)
         when 'password_confirmation' then (if !(value == @state.password)
@@ -24,43 +24,70 @@
                                 null)
         else null
     handleChange: (e) ->
-      name = e.target.name[5..-2]
+      name = e.target.name
       value = e.target.value
       @setState "#{ name }": value
       notice = @validate(name, value)
       if notice
-        $('#warning').text('* ' + notice)
+        $(e.target.nextSibling).text('* ' + notice)
       else
-        $('#warning').empty()
+        $(e.target.nextSibling).empty()
     valid: ->
       @state.username.match(/([a-zA-Z]|\d){8,12}/) && @state.email.match(/([a-zA-z]|\d)+@([a-zA-z]|\d)+\.([a-zA-z]|\d)+/) && @state.password.match(/([a-zA-Z]|\d){8,16}/) && @state.password_confirmation == @state.password
-    ###
     handleSubmit: (e) ->
       e.preventDefault()
-      $.post '', { event: @state }, (data) =>
+      $.post '', { user: @state }, (data) =>
         console.log(data)
         @props.handleNewEvent data
         @setState @getInitialState()
       , 'JSON'
-    ###
     render: ->
-      `<div>
-        <h6>* Please fill out all fields</h6>
-        <form className='form-inline' method='post' action='/users'>
-          <div className='form-group'>
-            <input type='text' className='form-control' placeholder='Username' name='user[username]' value={this.state.username} onChange={this.handleChange}></input>
-          </div>
-          <div className='form-group'>
-            <input type='email' className='form-control' placeholder='Email' name='user[email]' value={this.state.email} onChange={this.handleChange}></input>
-          </div>
-          <div className='form-group'>
-            <input type='password' className='form-control' placeholder='Password' name='user[password]' value={this.state.password} onChange={this.handleChange}></input>
-          </div>
-          <div className='form-group'>
-            <input type='password' className='form-control' placeholder='Confirm your password' name='user[password_confirmation]' value={this.state.password_confirmation} onChange={this.handleChange}></input>
-          </div>
-          <input name='authenticity_token' value={this.props.form_authenticity_token} type="hidden"></input>
-          <button className='btn btn-primary' disabled={!this.valid()}>Submit</button>
+      `<div className="tab-pane fade" id="signup" onSubmit={this.handleSubmit}>
+        <form className="form-horizontal">
+          <fieldset>
+            <div className="control-group">
+              <label className="control-label" htmlFor="username">Username:</label>
+              <div className="controls">
+                <input id="username" name="username" className="form-control input-large" type="text" placeholder="JoeSixpack@sixpacksrus.com" value={this.state.username} onChange={this.handleChange} required/>
+                <em></em>
+              </div>
+            </div>
+
+            <div className="control-group">
+              <label className="control-label" htmlFor="email">Email:</label>
+              <div className="controls">
+                <input id="email" name="email" className="form-control input-large" type="text" placeholder="JoeSixpack" value={this.state.email} onChange={this.handleChange} required/>
+                <em></em>
+              </div>
+            </div>
+
+            <div className="control-group">
+              <label className="control-label" htmlFor="password">Password:</label>
+              <div className="controls">
+                <input id="password" name="password" className="form-control input-large" type="password" placeholder="********" value={this.state.password}  onChange={this.handleChange} required/>
+                <em></em>
+              </div>
+            </div>
+
+            <div className="control-group">
+              <label className="control-label" htmlFor="password_confirmation">Confirm password:</label>
+              <div className="controls">
+                <input id="password_confirmation" name="password_confirmation" className="form-control input-large" type="password" placeholder="********" value={this.state.password_confirmation}  onChange={this.handleChange} required/>
+                <em></em>
+              </div>
+            </div>
+
+            <div className="control-group">
+              <input name='authenticity_token' value={this.props.form_authenticity_token} type="hidden"></input>
+            </div>
+
+            <div className="control-group">
+              <label className="control-label" htmlFor="confirmsignup"></label>
+              <div className="controls">
+                <button id="confirmsignup" name="confirmsignup" className="btn btn-primary" disabled={!this.valid()}>Sign Up</button>
+              </div>
+            </div>
+          </fieldset>
         </form>
-        <div id='warning' class="help-block"></div>
       </div>`
+
