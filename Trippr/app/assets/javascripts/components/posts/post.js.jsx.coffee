@@ -1,5 +1,8 @@
 @Post = React.createClass
   render: ->
-    `<p>
-      {this.props.post.body}
-    </p>`
+    `<div>
+      <p>
+        {this.props.post.body}
+      </p>
+        <CommentForm/>
+    </div>`
