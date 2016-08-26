@@ -12,7 +12,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @posts = Post.where(event_id: params[:id])
-    # p @eventPost
+    @comments = Comment.where(post_id: params[:id])
   end
 
   def create
