@@ -5,12 +5,12 @@
       current_user: null
     loginInSuccessful: (data) ->
       @setState current_user: data
-      $("#navbar-signiture").html(`<p className="navbar-text navbar-right">{"Signed in as " + this.state.current_user.username}<a href= "/logout" className="navbar-link"> Logout</a></p>`)
+      $("#navbar-signiture").html(`<a className="page-scroll">{"Signed in as " + this.state.current_user.username + " "}<a href= "/logout" className="navbar-link"> Logout</a></a>`)
     renderNavSigniture: ->
       if @state.current_user
-        `<p className="navbar-text navbar-right">{"Signed in as " + this.state.current_user.username}<a href= "/logout" className="navbar-link"> Logout</a></p>`
+        `<a className="page-scroll">{"Hi, " + this.state.current_user.username}<a href= "/logout" className="navbar-link"> Logout</a></a>`
       else
-        `<LoginForm handleLogin={this.loginInSuccessful} form_authenticity_token={this.props.form_authenticity_token}/>`
+        `<a id="login-logout-tab" data-toggle="modal" data-target=".bs-modal-sm">Login/Register</a>`
     render: ->
       navbarStyle = {
         backgroundColor:'#e3f2fd'
@@ -40,11 +40,11 @@
                           <a className="page-scroll" href="#portfolio">Examples</a>
                       </li>
                       <li>
-                          <a data-toggle="modal" data-target=".bs-modal-sm">Login/Register</a>
+                          {this.renderNavSigniture()}
                       </li>
                   </ul>
               </div>
           </div>
         </nav>
-        <FormModal />
+        <FormModal loginInSuccessful={this.loginInSuccessful} />
       </div>`

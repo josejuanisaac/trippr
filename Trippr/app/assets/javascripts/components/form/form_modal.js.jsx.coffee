@@ -1,6 +1,10 @@
 @FormModal = React.createClass
+  handleLogin: (data) ->
+    $('#formModal').toggle()
+    $('.modal-backdrop').remove()
+    @props.loginInSuccessful data
   render: ->
-    `<div className="modal fade bs-modal-sm" id="myModal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    `<div className="modal fade bs-modal-sm" id="formModal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
       <div className="modal-dialog modal-sm">
         <div className="modal-content">
           <br/>
@@ -12,8 +16,8 @@
           </div>
           <div className="modal-body">
             <div id="myTabContent" className="tab-content">
-              <LoginForm form_authenticity_token={this.props.form_authenticity_token}/>
-              <SignupForm form_authenticity_token={this.props.form_authenticity_token}/>
+              <LoginForm form_authenticity_token={this.props.form_authenticity_token} handleLogin={this.handleLogin} />
+              <SignupForm form_authenticity_token={this.props.form_authenticity_token} handleSignup={this.handlelogin} />
             </div>
           </div>
           <div className="modal-footer">

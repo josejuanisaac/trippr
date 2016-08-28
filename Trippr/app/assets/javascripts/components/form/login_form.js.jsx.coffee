@@ -38,15 +38,15 @@
     errorDiv = $("#error-message-login")
     errorDiv.text ->
       "* " + error.responseText
-    # errorDiv.css
-    #   color: "red"
+    errorDiv.css
+      color: "red"
   render: ->
     `<div className="tab-pane fade active in" id="signin" onSubmit={this.handleSubmit}>
       <form className="form-horizontal">
       <fieldset>
 
       <div className="control-group">
-        <label className="control-label" htmlFor="email">Alias:</label>
+        <label className="control-label" htmlFor="email">Email:</label>
         <div className="controls">
           <input id="email" name="email" type="text" className="form-control input-medium" placeholder="JoeSixpack" value={this.state.email} onChange={this.handleChange} required/>
           <em></em>
@@ -63,6 +63,7 @@
 
       <div className="control-group">
         <input name='authenticity_token' value={this.props.form_authenticity_token} type="hidden"></input>
+        <em id='error-message-login'></em>
       </div>
 
       <div className="control-group">

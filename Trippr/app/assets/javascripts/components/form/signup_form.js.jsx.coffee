@@ -36,11 +36,22 @@
       @state.username.match(/([a-zA-Z]|\d){8,12}/) && @state.email.match(/([a-zA-z]|\d)+@([a-zA-z]|\d)+\.([a-zA-z]|\d)+/) && @state.password.match(/([a-zA-Z]|\d){8,16}/) && @state.password_confirmation == @state.password
     handleSubmit: (e) ->
       e.preventDefault()
-      $.post '', { user: @state }, (data) =>
-        console.log(data)
-        @props.handleNewEvent data
-        @setState @getInitialState()
-      , 'JSON'
+      $.ajax
+        url: "/users"
+        type: "POST"
+        data: {user: @state}
+        dateType: "JSON"
+        success: @ajaxSuccess
+        error: @ajaxFail
+    ajaxSuccess: (data) ->
+      @props.handleSignup data
+      @setState @getInitialState()
+    ajaxFail: (error) ->
+      errorDiv = $("#error-message-login")
+      errorDiv.text ->
+        "* " + error.responseText
+      errorDiv.css
+        color: "red"
     render: ->
       `<div className="tab-pane fade" id="signup" onSubmit={this.handleSubmit}>
         <form className="form-horizontal">
@@ -79,6 +90,7 @@
 
             <div className="control-group">
               <input name='authenticity_token' value={this.props.form_authenticity_token} type="hidden"></input>
+              <em id='error-message-login'></em>
             </div>
 
             <div className="control-group">
