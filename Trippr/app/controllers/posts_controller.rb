@@ -11,7 +11,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    render json: @post
+    @comments = Comment.where(post_id: params[:id])
+    render json: @comments
   end
 
   def create
