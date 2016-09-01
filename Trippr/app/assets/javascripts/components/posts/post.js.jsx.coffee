@@ -1,11 +1,12 @@
 @Post = React.createClass
   render: ->
-    `<div>
+    `<div className="post">
       <p>
         {this.props.post.body}
       </p>
-        {this.props.comments.map(function(comment) {
-          return <Comment key={comment.id} comment={comment}/>
-        })}
+      <Comments />
         <CommentForm/>
     </div>`
+        # {this.props.comments.map(function(comment) {
+        #   return <Comment key={comment.id} comment={comment}/>
+        # })}

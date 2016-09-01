@@ -10,14 +10,14 @@
   render: ->
     `<div>
       <div className='container'>
-        <div className='row'>
+        <div className='row eventRow'>
           <div className='col-md-12'>
-            <h1>{this.props.event.title}</h1>
-            <p>{this.props.event.description}</p>
+            <h1 className='eventTitle'>{this.props.event.title}</h1>
+            <p className='eventDescription'>{this.props.event.description}</p>
           </div>
         </div>
 
-        <div className='row'>
+        <div className='row postRow'>
           <div className='col-md-12 postList'>
             <h1>Posts</h1>
               {this.state.posts.map(function(post) {
