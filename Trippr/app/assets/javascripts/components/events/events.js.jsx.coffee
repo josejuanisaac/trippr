@@ -31,20 +31,20 @@
         </div>
         <hr/>
         <div className='guested_events'>
-        <h1 className= 'title'>guested_events</h1>
-        <hr/>
-        <table className='table table-bordered'>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.guested_events.map(function(event) {
-              return <Event key={event.id} event={event}/>
-            })}
-          </tbody>
-        </table>
-      </div>
+          <h1 className= 'title'>guested_events</h1>
+          <hr/>
+          <table className='table table-bordered'>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.guested_events.map(function(event) {
+                return <Event key={event.id} event={event}/>
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>`
