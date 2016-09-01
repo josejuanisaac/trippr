@@ -10,7 +10,7 @@
   render: ->
     `<div className='col-md-12 commentList'>
       <p>comments</p>
-        {this.state.comments.map(function(comment) {
-          return <Comment key={comment.id} comment={comment}/>
-        })}
+      {this.state.comments.map(function(comment) {
+        return <Comment key={comment.id} comment={comment}/>
+      })}
     </div>`

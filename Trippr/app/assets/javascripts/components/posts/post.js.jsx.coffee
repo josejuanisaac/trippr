@@ -4,9 +4,6 @@
       <p>
         {this.props.post.body}
       </p>
-      <Comments />
-        <CommentForm/>
+      <Comments comments={this.props.comments}/>
+      <CommentForm/>
     </div>`
-        # {this.props.comments.map(function(comment) {
-        #   return <Comment key={comment.id} comment={comment}/>
-        # })}

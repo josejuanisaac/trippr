@@ -21,8 +21,9 @@
           <div className='col-md-12 postList'>
             <h1>Posts</h1>
               {this.state.posts.map(function(post) {
-                return <Post key={post.id} post={post}/>
-                })}
+                return <Post key={post.id} post={post} comments={this.props.comments}/>
+                }.bind(this))}
+              }
           </div>
           <PostForm handleNewPost={this.addPost} creator_id={this.props.creator_id} event_id={this.props.event.id}/>
         </div>
