@@ -6,19 +6,4 @@ class Post < ActiveRecord::Base
   has_many :commenters, through: :comments, source: :user
   belongs_to :event
   belongs_to :creator, class_name: "User", foreign_key: "creator_id"
-
-  def posthash
-    @posts = Post.all
-    @posthash = {}
-    @posts.each {|post|
-      @posthash[post.id] = []
-    }
-    @comments = Comment.all
-    @comments.each {|comment|
-      @posthash[comment.post_id] << comment
-    }
-    @posthash
-
-  end
-
 end

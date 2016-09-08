@@ -4,6 +4,6 @@
       <p>
         {this.props.post.body}
       </p>
-      <Comments comments={this.props.comments}/>
+      <Comments post={this.props.post} comments={this.props.comments}/>
       <CommentForm/>
     </div>`

@@ -1,6 +1,8 @@
 @Posts = React.createClass
   getInitialState: ->
     posts: @props.posts
+    # console.log(this.props.comments)
+
   getDefaultProps: ->
     posts: []
   addPost: (post) ->
@@ -23,7 +25,7 @@
               {this.state.posts.map(function(post) {
                 return <Post key={post.id} post={post} comments={this.props.comments}/>
                 }.bind(this))}
-              }
+
           </div>
           <PostForm handleNewPost={this.addPost} creator_id={this.props.creator_id} event_id={this.props.event.id}/>
         </div>

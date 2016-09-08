@@ -9,8 +9,7 @@
     @setState comments: comments
   render: ->
     `<div className='col-md-12 commentList'>
-      <p>comments</p>
-      {this.state.comments.map(function(comment) {
+      {this.props.comments[this.props.post.id].map(function(comment) {
         return <Comment key={comment.id} comment={comment}/>
-      })}
+        })}
     </div>`
