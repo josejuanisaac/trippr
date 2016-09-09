@@ -15,15 +15,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    # @posts = Post.where(event_id: params[:id])
-
     @posts = Post.where(event_id: params[:id]).includes(:comments).map { |post| post.as_json.merge({comments: post.comments.as_json}) }
-    # p @posts.first[:comments]
-    # @comments = {}
-    # @posts.map {|post|
-    #   @comments[post.id] = post.comments
-    # }
-    # @comments
   end
 
   def create

@@ -1,8 +1,7 @@
 @Posts = React.createClass
   getInitialState: ->
     posts: @props.posts
-    # console.log(this.props.test)
-
+    event_id: @props.event.id
   getDefaultProps: ->
     posts: []
   addPost: (post) ->
@@ -23,10 +22,10 @@
           <div className='col-md-12 postList'>
             <h1>Posts</h1>
               {this.state.posts.map(function(post) {
-                return <Post key={post.id} post={post}/>
+                return <Post key={post.id} creator_id={this.props.creator_id} event_id={this.state.event_id} post={post}/>
                 }.bind(this))}
           </div>
-          <PostForm handleNewPost={this.addPost} creator_id={this.props.creator_id} event_id={this.props.event.id}/>
+          <PostForm handleNewPost={this.addPost} creator_id={this.props.creator_id} event_id={this.state.event_id}/>
         </div>
 
       </div>
