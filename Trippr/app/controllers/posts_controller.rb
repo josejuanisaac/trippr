@@ -11,14 +11,17 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    render json: @post
+    @comments = Comment.where(post_id: params[:id])
+    # render json: @comments
   end
 
   def create
     @post = Post.new(post_params)
     if @post.save
+      p "successfully posted"
       render json: @post
     else
+      p "error posting"
       render json: @post.errors.full_messages
     end
   end

@@ -5,10 +5,10 @@
       current_user: null
     loginInSuccessful: (data) ->
       @setState current_user: data
-      $("#navbar-signiture").html(`<a className="page-scroll">{"Signed in as " + this.state.current_user.username + " "}<a href= "/logout" className="navbar-link"> Logout</a></a>`)
+      $("#navbar-signiture").html(`<a a href="/logout" className="page-scroll">{"Signed in as " + this.state.current_user.username + " "} Logout</a>`)
     renderNavSigniture: ->
       if @state.current_user
-        `<a className="page-scroll">{"Hi, " + this.state.current_user.username}<a href= "/logout" className="navbar-link"> Logout</a></a>`
+        `<a href="/logout" className="page-scroll">{"Hi, " + this.state.current_user.username} Logout</a>`
       else
         `<a id="login-logout-tab" data-toggle="modal" data-target=".bs-modal-sm">Login/Register</a>`
     render: ->

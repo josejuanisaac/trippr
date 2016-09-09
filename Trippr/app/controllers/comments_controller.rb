@@ -6,8 +6,9 @@ class CommentsController < ApplicationController
   # end
 
   def show
-    @comment = Comment.find(params[:id])
-    render json: @comment
+    # @comment = Comment.find(params[:id])
+    @comments = Comment.where(post_id: params[:id])
+    # render json: @comments
   end
 
   def create
