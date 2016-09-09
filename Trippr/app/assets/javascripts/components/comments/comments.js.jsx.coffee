@@ -1,6 +1,6 @@
 @Comments = React.createClass
   getInitialState: ->
-    comments: @props.comments
+    comments: @props.post.comments
   getDefaultProps: ->
     comments: []
   addComment: (comment) ->
@@ -9,7 +9,7 @@
     @setState comments: comments
   render: ->
     `<div className='col-md-12 commentList'>
-      {this.props.comments[this.props.post.id].map(function(comment) {
+      {this.state.comments.map(function(comment) {
         return <Comment key={comment.id} comment={comment}/>
         })}
     </div>`
