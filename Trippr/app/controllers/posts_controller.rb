@@ -18,6 +18,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
+      @post = @post.as_json.merge({comments: @post.comments.as_json})
+
       p "successfully posted"
       render json: @post
     else

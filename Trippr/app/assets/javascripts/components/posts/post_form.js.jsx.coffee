@@ -10,7 +10,8 @@
     @state.body
   handleSubmit: (e) ->
     e.preventDefault()
-    $.post '/events/:event_id/posts', {post: @state}, (newPost) =>
+    url = "/events/#{@state.event_id}/posts"
+    $.post url, {post: @state}, (newPost) =>
       console.log(newPost)
       @props.handleNewPost newPost
       @setState @getInitialState()
