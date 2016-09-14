@@ -22,7 +22,7 @@
     `<div>
       <div className='col-md-12 commentList'>
         {this.state.comments.map(function(comment) {
-          return <Comment key={comment.id} handleDelete={that.deleteComment.bind(null, comment.id)} comment={comment}/>
+          return <Comment key={comment.id} event_id={that.props.event_id} post_id={that.props.post.id} creator_id={that.props.creator_id} handleDelete={that.deleteComment.bind(null, comment.id)} comment={comment}/>
           })}
       </div>
       <CommentForm event_id={this.props.event_id} post_id={this.props.post.id} creator_id={this.props.creator_id} handleNewComment={this.addComment} />
