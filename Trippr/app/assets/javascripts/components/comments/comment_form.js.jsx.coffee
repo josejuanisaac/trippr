@@ -17,9 +17,9 @@
       @setState @getInitialState()
     , 'JSON'
   render: ->
-    `<form className="form-inline postForm" onSubmit={this.handleSubmit}>
+    `<form className="form-inline commentForm" onSubmit={this.handleSubmit}>
       <div className="form-group">
-        <input className='form-control' name="content" value={this.state.content} onChange={this.handleChange} ></input>
+        <input className='form-control' name="content" value={this.state.content} onSubmit={this.validateComment} onChange={this.handleChange} maxLength={140} ></input>
       </div>
       <div className="form-group">
         <input type="hidden" name="user_id" value={this.state.user_id} className='form-control'></input>
