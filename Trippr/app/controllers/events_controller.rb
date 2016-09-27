@@ -35,8 +35,12 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    @event.update(event_params)
-    redirect_to event_path(@event)
+    if @event.update(event_params)
+      redirect_to '/events'
+      # render json: @event
+    else
+      p "fail"
+    end
   end
 
   def destroy
@@ -58,6 +62,6 @@ class EventsController < ApplicationController
 
   private
   def event_params
-    params.require(:event).permit(:title, :description, :creator_id)
+    params.permit(:title, :description, :creator_id)
   end
 end
