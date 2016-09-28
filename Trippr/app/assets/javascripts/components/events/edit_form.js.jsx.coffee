@@ -3,22 +3,18 @@
       title: @props.event.title
       description: @props.event.description
       creator_id: @props.event.creator_id
-      id: @props.event.id
     handleChange: (e) ->
       name = e.target.name
       @setState "#{ name }": e.target.value
     valid: ->
       @state.title && @state.description
     handleSubmit: (e) ->
-      # e.preventDefault()
+      e.preventDefault()
       url = "/events/#{this.props.event.id}"
-      data = $("#eventForm").serialize()
-      console.log(data)
-
       $.ajax
         url: url
         type: 'PUT'
-        data: data
+        data: {event: @state}
         success: (response) ->
           console.log(response)
 
