@@ -15,27 +15,30 @@
   handleEdit: ->
     console.log('edit')
     $("#post#{this.props.post.id} .postContent").html("<input id='updatePostBody' type='text' value='#{this.props.post.body}'></input>")
-    $("#post#{this.props.post.id} .saveButton").show()
+    $("#post#{this.props.post.id} .saveButton").show(500)
   handleSubmit: (e) ->
     e.preventDefault()
-    console.log('saved')
+    that = this
+
     url = "/events/#{@props.event_id}/posts/#{@props.post.id}"
     body = document.getElementById("updatePostBody").value
     creator_id = @props.creator_id
     event_id = @props.event_id
+
     data = {
       body: body,
       event_id: event_id,
       creator_id: creator_id
     }
-    console.log(data)
+
 
     $.ajax
       url: url
       type: 'PUT'
       data: {post: data}
       success: (response) ->
-        console.log('saved')
+        $("#post#{that.props.post.id} .postContent").text(response.body)
+        $("#post#{that.props.post.id} .saveButton").hide(300)
 
   renderDeleteButton: ->
     if this.props.creator_id is this.props.post.creator_id
