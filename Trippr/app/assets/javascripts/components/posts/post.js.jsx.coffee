@@ -12,9 +12,35 @@
         $('#post' + id).remove()
       error: ->
         alert('404 not found')
+  handleEdit: ->
+    console.log('edit')
+    $("#post#{this.props.post.id} .postContent").html("<input id='updatePostBody' type='text' value='#{this.props.post.body}'></input>")
+    $("#post#{this.props.post.id} .saveButton").show()
+  handleSubmit: (e) ->
+    e.preventDefault()
+    console.log('saved')
+    url = "/events/#{@props.event_id}/posts/#{@props.post.id}"
+    body = document.getElementById("updatePostBody").value
+    creator_id = @props.creator_id
+    event_id = @props.event_id
+    data = {
+      body: body,
+      event_id: event_id,
+      creator_id: creator_id
+    }
+    console.log(data)
+
+    $.ajax
+      url: url
+      type: 'PUT'
+      data: {post: data}
+      success: (response) ->
+        console.log('saved')
+
   renderDeleteButton: ->
     if this.props.creator_id is this.props.post.creator_id
       `<div className='col-md-1'>
+        <a className="editButton" onClick={this.handleEdit}><span className="glyphicon glyphicon-pencil"></span></a>
         <a className="deleteButton" onClick={this.handleDelete}><span className="glyphicon glyphicon-trash"></span></a>
       </div>`
   # renderPost: ->
@@ -26,7 +52,8 @@
   render: ->
     `<div className="col-md-8" id={"post" + this.props.post.id}>
       <div className='col-md-11'>
-        <p>{this.props.post.body}</p>
+        <p className="postContent">{this.props.post.body}</p>
+        <button className='btn btn-info saveButton' onClick={this.handleSubmit}>Save</button>
       </div>
       {this.renderDeleteButton()}
       <Comments event_id={this.props.event_id} creator_id={this.props.creator_id} post={this.props.post}/>
