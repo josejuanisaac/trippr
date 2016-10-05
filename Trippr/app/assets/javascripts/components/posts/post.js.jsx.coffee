@@ -13,9 +13,9 @@
       error: ->
         alert('404 not found')
   handleEdit: ->
-    console.log('edit')
     $("#post#{this.props.post.id} .postContent").html("<input id='updatePostBody' type='text' value='#{this.props.post.body}'></input>")
     $("#post#{this.props.post.id} .saveButton").show(500)
+
   handleSubmit: (e) ->
     e.preventDefault()
     that = this
