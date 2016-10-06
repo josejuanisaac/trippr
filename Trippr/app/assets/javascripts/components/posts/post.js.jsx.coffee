@@ -15,6 +15,7 @@
   handleEdit: ->
     $("#post#{this.props.post.id} .postContent").html("<input id='updatePostBody' type='text' value='#{this.props.post.body}'></input>")
     $("#post#{this.props.post.id} .saveButton").show(500)
+    $("#updatePostBody").focus()
 
   handleSubmit: (e) ->
     e.preventDefault()

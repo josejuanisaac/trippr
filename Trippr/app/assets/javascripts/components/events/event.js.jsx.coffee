@@ -13,6 +13,7 @@
     $("#event#{this.props.event.id} .eventTitle").html("<input type='text' id='updateTitle' value='#{this.state.title}'></input>")
     $("#event#{this.props.event.id} .eventDescription").html("<input type='text' id='updateDescription' value='#{this.state.description}'></input>")
     $("#event#{this.props.event.id} .saveButton").css("display", "inline")
+    $("#updateTitle").focus()
 
   handleSubmit: (e) ->
     e.preventDefault()
