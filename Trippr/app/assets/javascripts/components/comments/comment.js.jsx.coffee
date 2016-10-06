@@ -14,6 +14,7 @@
     # console.log('edit')
     $("#comment#{this.props.comment.id} p").html("<input id='updateContent' type='text' value='#{this.props.comment.content}''></input>")
     $("#comment#{this.props.comment.id} .saveButton").show(500)
+    $("#updateContent").focus()
   handleSubmit: (e) ->
     e.preventDefault()
     that = this
